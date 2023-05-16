@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "../NotFound/NotFound";
 import Loader from "../../components/Loader/Loader";
+import Profile from "../../components/Profile/Profile";
 
 export default function UserDashboard() {
   const { userId } = useParams();
@@ -17,10 +18,7 @@ export default function UserDashboard() {
         setUserData(userData);
         setIsError(!response.ok);
       } catch (error) {
-        console.log(
-          "An error occurred while retrieving data: ",
-          error
-        );
+        console.log("An error occurred while retrieving data: ", error);
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -30,17 +28,23 @@ export default function UserDashboard() {
     fetchData();
   }, [userId]);
 
-  if(isError){
-    return <NotFound/>
+  if (isError) {
+    return <NotFound />;
   }
 
   return (
-    <div>
-      <h1>
-        {isLoading
-          ? <Loader/>
-          :`${userData?.name}`}
-      </h1>
-    </div>
+    <>
+    {console.log(userData)}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Profile
+          name={userData?.login}
+          image={userData?.avatar_url}
+          created_at={userData?.created_at}
+          url={userData?.html_url}
+        />
+      )}
+    </>
   );
 }
