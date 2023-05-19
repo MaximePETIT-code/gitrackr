@@ -2,7 +2,8 @@
 
 :root {
 	// COLORS
-	--cyan-light: #F6FAFD;
+	--cyan-extralight: #F6FAFD;
+	--cyan-light: #CDE3F4;
 	--black: #061119;
 	--blue: #2B82DA;
 	--blue-light: #E2EFF8;
@@ -45,7 +46,7 @@ body {
 /* GLOBAL CSS */
 
 body{
-	background-color: var(--cyan-light);
+	background-color: var(--cyan-extralight);
 	font-family: var(--fm);
 	font-size: var(--fs-s);
 	color: var(--black);
