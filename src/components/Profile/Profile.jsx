@@ -1,22 +1,28 @@
 import PropTypes from "prop-types";
+import Button from "../Button/Button";
+import styles from "./Profile.module.scss";
 
 export default function Profil({ name, image, created_at, url }) {
-
-  const date = new Date(created_at).toLocaleDateString('en-GB');
+  const date = new Date(created_at).toLocaleDateString("en-GB");
 
   return (
-    <div className="profil">
-      <div className="profil__picture">
-        <img src={image} alt={`Profile picture of ${name}, a developer and a user on Github `} />
+    <div className={styles.profil}>
+      <div className={styles.profil__picture}>
+        <img
+          src={image}
+          alt={`Profile picture of ${name}, a developer and a user on Github`}
+        />
       </div>
-      <div className="profil__infos">
-        <div className="profil__title">
-          <h1>{`${name}'s`} <span>Github dashboard</span></h1>
+      <div className={styles.profil__container}>
+        <div className={styles.profil__title}>
+          <h1>
+            {`${name}'s`} <span>GitHub dashboard</span>
+          </h1>
           <p>{`active since ${date}`}</p>
         </div>
-        <div className="secondary-cta">
-          <a target="_blank" rel="noreferrer" href={url}>View Github profil</a>
-        </div>
+        <Button external={true} url={url} type={'secondary'}>
+          View Github profile
+        </Button>
       </div>
     </div>
   );

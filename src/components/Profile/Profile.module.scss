@@ -1,0 +1,39 @@
+.profil {
+  display: flex;
+  gap: 48px;
+
+  &__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__title{
+    h1{
+      font-size: var(--fs-xl);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    span{
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      color: var(--blue-deep);
+      line-height: 1.5;
+      display: block;
+    }
+
+    p{
+      line-height: 2;
+    }
+  }
+
+  &__picture{
+    min-width: 165px;
+    min-height: 165px;
+    img{
+      width: 165px;
+      border-radius: 12px;
+    }
+  }
+}
