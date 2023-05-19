@@ -1,0 +1,26 @@
+.button {
+  display: flex;
+  a {
+    text-decoration: none;
+    color: var(--blue-light);
+    font-weight: 400;
+    background-color: var(--blue);
+    border: 2px var(--blue) solid;
+    border-radius: 12px;
+    padding: 12px 24px;
+  }
+}
+
+.button--secondary {
+  a {
+    color: var(--blue);
+    background-color: transparent;
+    transition: 0.1s all ease-in;
+
+    &:hover{
+      transition: 0.1s all ease-in;
+      background-color: var(--blue);
+      color: var(--blue-light);
+    }
+  }
+}
