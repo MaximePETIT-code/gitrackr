@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NotFound from "../NotFound/NotFound";
+import NotFound from "../../components/NotFound/NotFound";
 import Loader from "../../components/Loader/Loader";
 import Profile from "../../components/Profile/Profile";
 
@@ -34,7 +34,6 @@ export default function UserDashboard() {
 
   return (
     <>
-    {console.log(userData)}
       {isLoading ? (
         <Loader />
       ) : (
