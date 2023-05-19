@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/Root/Root";
+import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import "./index.scss";
@@ -10,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home/>,
+    errorElement: <Error/>,
   },
   {
     path: "/:userId",
