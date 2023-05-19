@@ -1,0 +1,10 @@
+.sidebar{
+  width: 270px;
+  border-right: 1px var(--cyan-light) solid;
+  padding: 24px 0;
+
+  &__container{
+    width: 75%;
+    margin: 0 auto;
+  }
+}
