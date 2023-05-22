@@ -1,0 +1,22 @@
+.navItem {
+  list-style: none;
+  margin-bottom: 10px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 16px 10px;
+    text-decoration: none;
+  }
+
+  .active {
+    background-color: var(--blue-light);
+  }
+
+  &__title {
+    color: var(--blue-deep);
+    font-weight: 600;
+  }
+}
