@@ -2,7 +2,7 @@
   display: flex;
   a {
     text-decoration: none;
-    color: var(--blue-light);
+    color: var(--blue-extralight);
     font-weight: 400;
     background-color: var(--blue);
     border: 2px var(--blue) solid;
@@ -20,7 +20,7 @@
     &:hover{
       transition: 0.1s all ease-in;
       background-color: var(--blue);
-      color: var(--blue-light);
+      color: var(--blue-extralight);
     }
   }
 }
