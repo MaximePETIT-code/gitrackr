@@ -1,5 +1,6 @@
 .button {
   display: flex;
+
   a {
     text-decoration: none;
     color: var(--blue-extralight);
@@ -15,10 +16,10 @@
   a {
     color: var(--blue);
     background-color: transparent;
-    transition: 0.1s all ease-in;
+    transition: 0.2s background-color ease-in-out, 0.2s color ease-in-out;
 
-    &:hover{
-      transition: 0.1s all ease-in;
+    &:hover {
+      transition: 0.2s background-color ease-in-out, 0.2s color ease-in-out;
       background-color: var(--blue);
       color: var(--blue-extralight);
     }

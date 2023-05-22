@@ -9,6 +9,12 @@
     border-radius: 16px;
     padding: 16px 10px;
     text-decoration: none;
+    transition: 0.2s background-color ease-in-out;
+
+    &:hover{
+      background-color: var(--blue-light);
+      transition: 0.2s background-color ease-in-out;
+    }
   }
 
   .active {
