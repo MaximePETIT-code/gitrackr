@@ -4,25 +4,40 @@ import NotFound from "../../components/NotFound/NotFound";
 import Loader from "../../components/Loader/Loader";
 import Profile from "../../components/Profile/Profile";
 
+const cache = {};
+
 export default function UserDashboard() {
   const { userId } = useParams();
-  const [userData, setUserData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [userData, setUserData] = useState(cache[userId] || null);
+  const [isLoading, setIsLoading] = useState(!cache[userId]);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(`https://api.github.com/users/${userId}`);
-        const userData = await response.json();
-        setUserData(userData);
-        setIsError(!response.ok);
-      } catch (error) {
-        console.log("An error occurred while retrieving data: ", error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+      setIsLoading(true);
+
+      if (cache[userId]) {
+        setUserData(cache[userId]);
+      } else {
+        try {
+          const response = await fetch(
+            `https://api.github.com/users/${userId}`
+          );
+          const userData = await response.json();
+
+          if (response.ok) {
+            cache[userId] = userData;
+            setUserData(userData);
+          } else {
+            setIsError(true);
+          }
+        } catch (error) {
+          console.log("An error occurred while retrieving data: ", error);
+          setIsError(true);
+        }
       }
+
+      setIsLoading(false);
     };
 
     fetchData();
@@ -32,18 +47,16 @@ export default function UserDashboard() {
     return <NotFound />;
   }
 
+  if (isLoading && !userData) {
+    return <Loader />;
+  }
+
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Profile
-          name={userData?.login}
-          image={userData?.avatar_url}
-          created_at={userData?.created_at}
-          url={userData?.html_url}
-        />
-      )}
-    </>
+    <Profile
+      name={userData?.login}
+      image={userData?.avatar_url}
+      created_at={userData?.created_at}
+      url={userData?.html_url}
+    />
   );
 }
