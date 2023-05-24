@@ -12,7 +12,7 @@ export function fetchUserRepositories(userId) {
         query: `
           query {
             user(login: "${userId}") {
-              repositories(isFork: false, privacy: PUBLIC, first: 10, orderBy: { field: STARGAZERS, direction: DESC }) {
+              repositories(first: 5, ownerAffiliations: [OWNER], orderBy: { field: STARGAZERS, direction: DESC }) {
                 totalCount
                 nodes {
                   name
@@ -39,7 +39,7 @@ export function fetchUserRepositories(userId) {
         const repositories = data?.data?.user?.repositories;
 
         if (repositories) {
-          const repositoryList = await Promise.all(
+          const TopRepositoriesList = await Promise.all(
             repositories.nodes.map(async (repo) => {
               const repoName = repo.name;
 
@@ -113,7 +113,10 @@ export function fetchUserRepositories(userId) {
             })
           );
 
-          resolve(repositoryList);
+          resolve({
+            totalRepositoriesCount: repositories.totalCount,
+            TopRepositoriesList,
+          });
         } else {
           reject(new Error("Error occurred"));
         }
