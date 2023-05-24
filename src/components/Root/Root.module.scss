@@ -5,5 +5,8 @@
 }
 
 .main {
-  padding: 24px 0;
+  padding: 48px 0;
+  width: calc(100vw - 380px);
+  display: flex;
+  gap: 48px;
 }
