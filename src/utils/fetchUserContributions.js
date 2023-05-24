@@ -21,6 +21,11 @@ export async function fetchUserContributions(userId) {
                   }
                 }
               }
+              repositories(first: 100, ownerAffiliations: [OWNER]) {
+                nodes {
+                  createdAt
+                }
+              }
             }
           }
         `,
@@ -30,9 +35,10 @@ export async function fetchUserContributions(userId) {
     const data = await response.json();
     const contributionCalendar =
       data?.data?.user?.contributionsCollection?.contributionCalendar;
+    const repositories = data?.data?.user?.repositories?.nodes || [];
 
     if (contributionCalendar) {
-      const commitsByMonth = contributionCalendar.weeks.reduce(
+      const contributionsByMonth = contributionCalendar.weeks.reduce(
         (result, week) => {
           week.contributionDays.forEach((day) => {
             const date = new Date(day.date);
@@ -55,7 +61,51 @@ export async function fetchUserContributions(userId) {
         {}
       );
 
-      return commitsByMonth;
+      const contributionsStartYear = parseInt(Object.keys(contributionsByMonth)[0]);
+      const contributionsStartMonth = parseInt(
+        Object.keys(contributionsByMonth[contributionsStartYear])[0]
+      );
+
+      const repositoriesByMonth = repositories.reduce((result, repository) => {
+        const createdAt = new Date(repository.createdAt);
+        const year = createdAt.getFullYear();
+        const month = createdAt.getMonth();
+
+        if (
+          year >= contributionsStartYear &&
+          (year !== contributionsStartYear || month >= contributionsStartMonth)
+        ) {
+          if (!result[year]) {
+            result[year] = {};
+            result[year].total = 0;
+          }
+          if (!result[year][month]) {
+            result[year][month] = 0;
+          }
+          result[year][month]++;
+          result[year].total++;
+        }
+
+        return result;
+      }, {});
+
+      // Fill missing keys with 0
+      for (const year in contributionsByMonth) {
+        for (const month in contributionsByMonth[year]) {
+          if (!repositoriesByMonth[year]) {
+            repositoriesByMonth[year] = {};
+            repositoriesByMonth[year].total = 0;
+          }
+          if (!repositoriesByMonth[year][month]) {
+            repositoriesByMonth[year][month] = 0;
+          }
+        }
+      }
+
+      return {
+        contributionsByMonth,
+        repositoriesByMonth,
+      };
     } else {
       throw new Error("Failed to fetch user contributions");
     }
