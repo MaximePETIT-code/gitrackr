@@ -24,8 +24,8 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
   for (const year in totalContributions.contributionsByMonth) {
     for (const monthIndex in totalContributions.contributionsByMonth[year]) {
       const monthValue = parseInt(monthIndex);
-      if (months[monthValue - 1]) {
-        labels.push(months[monthValue - 1]);
+      if (months[monthValue]) {
+        labels.push(months[monthValue]);
       }
     }
   }
