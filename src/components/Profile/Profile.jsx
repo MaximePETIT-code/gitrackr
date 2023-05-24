@@ -6,7 +6,7 @@ export default function Profil({ name, image, created_at, url }) {
   const date = new Date(created_at).toLocaleDateString("en-GB");
 
   return (
-    <div className={styles.profil}>
+    <section className={styles.profil}>
       <div className={styles.profil__picture}>
         <img
           src={image}
@@ -24,7 +24,7 @@ export default function Profil({ name, image, created_at, url }) {
           View Github profile
         </Button>
       </div>
-    </div>
+    </section>
   );
 }
 
