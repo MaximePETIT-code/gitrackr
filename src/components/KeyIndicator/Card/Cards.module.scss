@@ -1,0 +1,28 @@
+.card {
+  background-color: #E2EFF9;
+  padding: 24px 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-weight: 400;
+    font-size: 16px;
+    color: #1B547E;
+  }
+
+  &__value {
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 40px;
+    color: #123854;
+  }
+
+  &__percentage{
+    color: #1B547E;
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 4px;
+  }
+}

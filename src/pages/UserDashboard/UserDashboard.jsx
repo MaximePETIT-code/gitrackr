@@ -7,6 +7,8 @@ import ContributionsLineChart from "../../components/ContributionsLineChart/Cont
 import { fetchUserRepositories } from "../../utils/fetchUserRepositories";
 import { fetchUserContributions } from "../../utils/fetchUserContributions";
 import { getCacheData, setCacheData } from "../../utils/cache";
+import KeyIndicator from "../../components/KeyIndicator/KeyIndicator";
+import styles from "./UserDashboard.module.scss";
 
 export default function UserDashboard() {
   const { userId } = useParams();
@@ -17,9 +19,15 @@ export default function UserDashboard() {
   const [isError, setIsError] = useState(false);
 
   // State for contributions and repositories of the user
-  const [contributionsIsLoading, setContributionsIsLoading] = useState(!getCacheData(userId, "totalContributions"));
-  const [totalRepositories, setTotalRepositories] = useState(getCacheData(userId, "totalRepositories") || {});
-  const [totalContributions, setTotalContributions] = useState(getCacheData(userId, "totalContributions") || {});
+  const [contributionsIsLoading, setContributionsIsLoading] = useState(
+    !getCacheData(userId, "totalContributions")
+  );
+  const [totalRepositories, setTotalRepositories] = useState(
+    getCacheData(userId, "totalRepositories") || {}
+  );
+  const [totalContributions, setTotalContributions] = useState(
+    getCacheData(userId, "totalContributions") || {}
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,11 +40,14 @@ export default function UserDashboard() {
         setTotalRepositories(getCacheData(userId, "totalRepositories") || {});
       } else {
         try {
-          const response = await fetch(`https://api.github.com/users/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-            },
-          });
+          const response = await fetch(
+            `https://api.github.com/users/${userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+              },
+            }
+          );
 
           // Check if the response is successful
           if (response.ok) {
@@ -66,7 +77,7 @@ export default function UserDashboard() {
           setIsError(true);
         }
       }
-      
+
       setIsLoading(false);
     };
 
@@ -85,17 +96,27 @@ export default function UserDashboard() {
 
   return (
     <>
-      <Profile
-        name={userData?.login}
-        image={userData?.avatar_url}
-        created_at={userData?.created_at}
-        url={userData?.html_url}
-      />
+      <div className={styles.left}>
+        <Profile
+          name={userData?.login}
+          image={userData?.avatar_url}
+          created_at={userData?.created_at}
+          url={userData?.html_url}
+        />
 
-      <ContributionsLineChart
-        totalContributions={totalContributions}
-        isLoading={contributionsIsLoading}
-      />
+        <ContributionsLineChart
+          totalContributions={totalContributions}
+          isLoading={contributionsIsLoading}
+        />
+      </div>
+
+      <div className={styles.right}>
+        <KeyIndicator
+          totalRepositories={totalRepositories}
+          totalContributions={totalContributions}
+          isLoading={contributionsIsLoading}
+        />
+      </div>
     </>
   );
 }
