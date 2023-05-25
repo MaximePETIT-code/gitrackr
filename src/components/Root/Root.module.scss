@@ -1,13 +1,15 @@
 .container {
   display: flex;
   gap: 48px;
-  min-height: 100vh;
+  height: 100vh;
+  @media screen and (max-width: 1220px) {
+    height: auto;
+  }
 }
 
 .main {
   padding: 48px 0;
   width: calc(100vw - 380px);
-  // display: flex;
   gap: 48px;
 
   @media screen and (max-width: 990px) {
