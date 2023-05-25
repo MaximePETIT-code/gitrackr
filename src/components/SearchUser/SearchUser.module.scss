@@ -24,9 +24,13 @@
   &__button {
     position: absolute;
     right: 4px;
-    bottom: 13px;
+    bottom: 7px;
     border: none;
     cursor: pointer;
     background-color: transparent;
+
+    @media screen and (max-width: 990px) {
+      display: none;
+    }
   }
 }
