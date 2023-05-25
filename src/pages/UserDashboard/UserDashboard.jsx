@@ -16,7 +16,6 @@ export default function UserDashboard() {
 
   // State for user data
   const [userData, setUserData] = useState(getCacheData(userId, "userData"));
-  const [isLoading, setIsLoading] = useState(!userData);
   const [isError, setIsError] = useState(false);
 
   // State for contributions and repositories of the user
@@ -30,10 +29,10 @@ export default function UserDashboard() {
     getCacheData(userId, "totalContributions") || {}
   );
 
+
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
-
+  
       // If user data is already available in the cache
       if (userData) {
         setUserData(userData);
@@ -41,34 +40,31 @@ export default function UserDashboard() {
         setTotalRepositories(getCacheData(userId, "totalRepositories") || {});
       } else {
         try {
-          const response = await fetch(
-            `https://api.github.com/users/${userId}`,
-            {
-              headers: {
-                Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-              },
-            }
-          );
-
+          const response = await fetch(`https://api.github.com/users/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+            },
+          });
+  
           // Check if the response is successful
           if (response.ok) {
             const userData = await response.json();
-            setCacheData(userId, "userData", userData);
             setUserData(userData);
-
+            setCacheData(userId, "userData", userData);
+  
             const fetchRepositoriesAndContributions = async () => {
               const [repositories, contributions] = await Promise.all([
                 fetchUserRepositories(userId),
                 fetchUserContributions(userId),
               ]);
-
-              setContributionsIsLoading(false);
+  
               setTotalRepositories(repositories);
               setCacheData(userId, "totalRepositories", repositories);
               setTotalContributions(contributions);
               setCacheData(userId, "totalContributions", contributions);
+              setContributionsIsLoading(false);
             };
-
+  
             fetchRepositoriesAndContributions();
           } else {
             setIsError(true);
@@ -78,24 +74,21 @@ export default function UserDashboard() {
           setIsError(true);
         }
       }
-
-      setIsLoading(false);
     };
-
+  
     fetchData();
   }, [userId, userData]);
-
+  
+  
   // Render the NotFound component if there's an error
   if (isError) {
     return <NotFound />;
   }
 
   // Render the Loader component if the user data is still loading
-  if (isLoading && !userData) {
+  if (contributionsIsLoading) {
     return <Loader />;
   }
-
-  console.log(totalRepositories);
 
   return (
     <>
