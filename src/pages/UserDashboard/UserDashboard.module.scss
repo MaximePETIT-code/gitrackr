@@ -1,7 +1,23 @@
-.left{
-  width: calc(100% - 400px);
+// .left{
+//   width: calc(100% - 400px);
+// }
+
+// .right{
+//   width: 400px;
+// }
+
+.top{
+  display: flex;
+  justify-content: space-between;
 }
 
-.right{
-  width: 400px;
+.bottom{
+  display: flex;
+  justify-content: space-between;
+  .left{
+      width: calc(100% - 28vw);
+  }
+  .right{
+      width: 24vw;
+  }
 }

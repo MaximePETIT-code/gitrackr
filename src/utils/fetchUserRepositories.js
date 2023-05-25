@@ -10,34 +10,43 @@ export function fetchUserRepositories(userId) {
       },
       body: JSON.stringify({
         query: `
-          query {
-            user(login: "${userId}") {
-              repositories(first: 5, ownerAffiliations: [OWNER], orderBy: { field: STARGAZERS, direction: DESC }) {
-                totalCount
-                nodes {
-                  name
-                  stargazerCount
-                  forkCount
-                  defaultBranchRef {
-                    target {
-                      ... on Commit {
-                        history {
-                          totalCount
-                        }
+        query {
+          user(login: "${userId}") {
+            repositories(first: 10, ownerAffiliations: [OWNER], orderBy: { field: STARGAZERS, direction: DESC }) {
+              totalCount
+              nodes {
+                name
+                stargazerCount
+                forkCount
+                defaultBranchRef {
+                  target {
+                    ... on Commit {
+                      history {
+                        totalCount
                       }
+                    }
+                  }
+                }
+                languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
+                  edges {
+                    size
+                    node {
+                      name
                     }
                   }
                 }
               }
             }
           }
+        }
+        
+        
         `,
       }),
     })
       .then((response) => response.json())
       .then(async (data) => {
         const repositories = data?.data?.user?.repositories;
-
         if (repositories) {
           const TopRepositoriesList = await Promise.all(
             repositories.nodes.map(async (repo) => {
@@ -109,6 +118,10 @@ export function fetchUserRepositories(userId) {
                 stargazerCount: repo.stargazerCount,
                 totalCommitCount,
                 contributors,
+                languages: repo.languages.edges.map((edge) => ({
+                  name: edge.node.name,
+                  size: edge.size,
+                })),
               };
             })
           );

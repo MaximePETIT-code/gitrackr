@@ -9,6 +9,7 @@ import { fetchUserContributions } from "../../utils/fetchUserContributions";
 import { getCacheData, setCacheData } from "../../utils/cache";
 import KeyIndicator from "../../components/KeyIndicator/KeyIndicator";
 import styles from "./UserDashboard.module.scss";
+import TopLanguagesDougnut from "../../components/TopLanguagesDoughnut/TopLanguagesDougnut";
 
 export default function UserDashboard() {
   const { userId } = useParams();
@@ -94,9 +95,11 @@ export default function UserDashboard() {
     return <Loader />;
   }
 
+  console.log(totalRepositories);
+
   return (
     <>
-      <div className={styles.left}>
+      <div className={styles.top}>
         <Profile
           name={userData?.login}
           image={userData?.avatar_url}
@@ -104,18 +107,27 @@ export default function UserDashboard() {
           url={userData?.html_url}
         />
 
-        <ContributionsLineChart
-          totalContributions={totalContributions}
-          isLoading={contributionsIsLoading}
-        />
-      </div>
-
-      <div className={styles.right}>
         <KeyIndicator
           totalRepositories={totalRepositories}
           totalContributions={totalContributions}
           isLoading={contributionsIsLoading}
         />
+      </div>
+
+      <div className={styles.bottom}>
+        <div className={styles.left}>
+          <ContributionsLineChart
+            totalContributions={totalContributions}
+            isLoading={contributionsIsLoading}
+          />
+        </div>
+
+        <div className={styles.right}>
+          <TopLanguagesDougnut
+            totalRepositories={totalRepositories}
+            isLoading={contributionsIsLoading}
+          />
+        </div>
       </div>
     </>
   );
