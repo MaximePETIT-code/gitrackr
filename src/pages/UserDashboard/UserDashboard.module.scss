@@ -1,15 +1,26 @@
-.general{
+.general, .charts {
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 1220px) {
+    flex-direction: column;
+  }
 }
 
-.charts{
-  display: flex;
-  justify-content: space-between;
-  .left{
-      width: calc(100% - 28vw);
+.charts {
+  .left {
+    width: calc(100% - 28vw);
+
+    @media screen and (max-width: 1220px) {
+      width: 100%;
+    }
   }
-  .right{
-      width: 24vw;
+
+  .right {
+    width: 24vw;
+
+    @media screen and (max-width: 1220px) {
+      width: 100%;
+    }
   }
 }

@@ -1,6 +1,10 @@
 .profil {
   display: flex;
   gap: 48px;
+  @media screen and (max-width: 990px) {
+    flex-direction: column;
+    gap: 24px;
+  }
 
   &__container{
     display: flex;
@@ -26,6 +30,10 @@
     p{
       line-height: 2;
     }
+    @media screen and (max-width: 990px) {
+      margin-bottom: 16px;
+    }
+    
   }
 
   &__picture{

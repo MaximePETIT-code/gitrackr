@@ -9,4 +9,9 @@
   width: calc(100vw - 380px);
   // display: flex;
   gap: 48px;
+
+  @media screen and (max-width: 990px) {
+    width: 90vw;
+    margin: 0 auto;
+  }
 }
