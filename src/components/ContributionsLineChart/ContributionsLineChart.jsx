@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import styles from "./ContributionsLineChart.module.scss";
+import TitleChart from "../TitleChart/TitleChart";
 
 export default function ContributionsLineChart({ totalContributions, isLoading }) {
   const months = [
@@ -52,22 +53,23 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
         label: "Contributions",
         data: contributionsData,
         fill: false,
-        borderColor: "rgb(75, 192, 192)",
+        borderColor: "#2B82DA",
+        backgroundColor: "#1E557B",
         pointStyle: "circle",
         pointRadius: 4,
         pointHoverRadius: 8,
         tension: 0.4,
       },
-      {
-        label: "New repositories",
-        data: repositoriesData,
-        fill: false,
-        borderColor: "rgb(192, 75, 75)",
-        pointStyle: "circle",
-        pointRadius: 4,
-        pointHoverRadius: 8,
-        tension: 0.4,
-      },
+      // {
+      //   label: "New repositories",
+      //   data: repositoriesData,
+      //   fill: false,
+      //   borderColor: "rgb(192, 75, 75)",
+      //   pointStyle: "circle",
+      //   pointRadius: 4,
+      //   pointHoverRadius: 8,
+      //   tension: 0.4,
+      // },
     ],
   };
 
@@ -79,19 +81,20 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
         grid: {
           display: true,
         },
-        ticks: {
-          stepSize: 20,
-        },
+        // ticks: {
+        //   stepSize: 20,
+        // },
       },
       x: {
         grid: {
-          display: false,
+          display: true,
         },
       },
     },
     plugins: {
       legend: {
-        position: "bottom",
+        display: true,
+        // position: "bottom",
       },
     },
   };
@@ -100,7 +103,12 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
     return <div>Loading...</div>;
   }
 
-  return <Line className={styles.lineChart} data={data} options={options} />;
+  return(
+    <section className={styles.lineChart}>
+      <TitleChart>Monthly contributions over the last 12 months</TitleChart>
+      <Line data={data} options={options} />
+    </section>
+  );
 }
 
 ContributionsLineChart.propTypes = {

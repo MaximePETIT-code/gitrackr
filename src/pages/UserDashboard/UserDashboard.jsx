@@ -99,7 +99,7 @@ export default function UserDashboard() {
 
   return (
     <>
-      <div className={styles.top}>
+      <header className={styles.general}>
         <Profile
           name={userData?.login}
           image={userData?.avatar_url}
@@ -112,9 +112,9 @@ export default function UserDashboard() {
           totalContributions={totalContributions}
           isLoading={contributionsIsLoading}
         />
-      </div>
+      </header>
 
-      <div className={styles.bottom}>
+      <div className={styles.charts}>
         <div className={styles.left}>
           <ContributionsLineChart
             totalContributions={totalContributions}

@@ -3,8 +3,10 @@
   padding: 24px 16px;
   border-radius: 12px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: space-between;
+  width: 50%;
 
   &__title {
     font-weight: 400;
@@ -12,17 +14,26 @@
     color: #1B547E;
   }
 
+  &__values{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   &__value {
-    margin-top: 8px;
     font-weight: 500;
-    font-size: 40px;
+    font-size: var(--fs-xl);
     color: #123854;
   }
 
-  &__percentage{
-    color: #1B547E;
-    font-size: 24px;
-    font-weight: 500;
-    margin-left: 4px;
+  &__percentage {
+    img{
+      width: 10px;
+    }
+    &__value {
+      color: #1B547E;
+      font-size: var(--fs-xs);
+      font-weight: 400;
+      margin-left: 4px;
+    }
   }
 }

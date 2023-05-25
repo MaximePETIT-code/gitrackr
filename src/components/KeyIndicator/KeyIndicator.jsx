@@ -7,7 +7,6 @@ export default function KeyIndicator({
   totalContributions,
   isLoading,
 }) {
-  console.log(totalContributions);
 
   if (isLoading) {
     return null;
@@ -21,9 +20,7 @@ export default function KeyIndicator({
   const previousMonth = months[months.length - 3];
 
   const lastValue = contributionsByMonth[lastYear][lastMonth];
-  console.log("last", lastValue);
   const previousValue = contributionsByMonth[lastYear][previousMonth];
-  console.log("previous", previousValue);
 
   let percentageChange;
 

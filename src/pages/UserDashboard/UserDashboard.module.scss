@@ -1,17 +1,9 @@
-// .left{
-//   width: calc(100% - 400px);
-// }
-
-// .right{
-//   width: 400px;
-// }
-
-.top{
+.general{
   display: flex;
   justify-content: space-between;
 }
 
-.bottom{
+.charts{
   display: flex;
   justify-content: space-between;
   .left{

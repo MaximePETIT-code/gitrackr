@@ -1,12 +1,12 @@
 .container {
   display: flex;
   gap: 48px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .main {
   padding: 48px 0;
   width: calc(100vw - 380px);
-  display: flex;
+  // display: flex;
   gap: 48px;
 }
