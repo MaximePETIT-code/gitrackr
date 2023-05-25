@@ -1,0 +1,57 @@
+.userResult {
+  width: 350px;
+
+  &__card {
+    min-height: 37.5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    text-decoration: none;
+
+    &:before {
+      content: '→	';
+      position: absolute;
+      color: #1E557B;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+
+    }
+
+    &:hover {
+      &:before {
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        height: 1px;
+        width: 100%;
+        background-color: #C9E1F3;
+      }
+    }
+
+    &__profile {
+      width: 35px;
+
+      img {
+        width: 100%;
+        border-radius: 12px;
+      }
+    }
+
+    &__name {
+      text-decoration: none;
+      color: #1E557B;
+    }
+  }
+}

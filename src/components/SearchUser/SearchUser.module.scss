@@ -1,0 +1,37 @@
+.searchBar {
+  position: relative;
+  margin-bottom: 24px;
+  &__input {
+    width: 350px;
+    padding: 14px 12px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #D2E6F4;
+    color: #1A496B;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder{
+      color: #91A9BB;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: 4px;
+    bottom: 7px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+}
+
+.notExist{
+  color: #1E557B;
+  font-weight: 400;
+}
