@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults/SearchResults";
 import styles from "./SearchUser.module.scss";
 import enterIcon from "./enter.svg";
@@ -7,7 +6,6 @@ import enterIcon from "./enter.svg";
 export default function SearchUser() {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const navigate = useNavigate();
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -35,7 +33,7 @@ export default function SearchUser() {
 
     if (searchResults.length > 0) {
       const firstUser = searchResults[0];
-      navigate(`/${firstUser.login}/`);
+      window.location.href = `/${firstUser.login}/`;
     }
   };
 
@@ -66,7 +64,7 @@ export default function SearchUser() {
           type="text"
           value={searchValue}
           onChange={handleSearchChange}
-          placeholder="Search a GitHub user"
+          placeholder="Search GitHub user"
           className={styles.searchBar__input}
         />
         <button type="submit" className={styles.searchBar__button}>
