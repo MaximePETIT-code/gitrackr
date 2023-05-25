@@ -1,0 +1,18 @@
+.logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+
+  &__icon{
+    width: 62px;
+  }
+  &__type{
+    font-size: 48px;
+    color: var(--blue);
+    font-weight: 700;
+    letter-spacing: -0.7px;
+  }
+}
