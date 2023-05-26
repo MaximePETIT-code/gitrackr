@@ -25,7 +25,7 @@ export default function KeyIndicator({
   let percentageChange;
 
   if (previousValue === 0 && lastValue === 0) {
-    percentageChange = 0;
+    percentageChange = null;
   } else if (previousValue === 0 && lastValue !== 0) {
     percentageChange = 100;
   } else if (previousValue !== 0 && lastValue === 0) {
