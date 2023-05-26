@@ -1,0 +1,78 @@
+.card{
+  background-color: var(--blue-light);
+  display: flex;
+  flex-direction: column;
+  width: calc(33% - 14px);
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 24px;
+  text-decoration: none;
+  transition: 0.3s transform ease-in-out, 0.3s box-shadow ease-in-out;
+
+  &:hover{
+    box-shadow: 0 4px 16px rgba(149, 186, 230, 0.15);
+    transform: scale(0.98);
+    transition: 0.3s transform ease-in-out, 0.3s box-shadow ease-in-out;
+  }
+
+  @media screen and (max-width: 1200px){
+    width: calc(50% - 12px);
+  }
+
+  @media screen and (max-width: 600px){
+    width: 100%;
+  }
+
+  &__name{
+    font-size: var(--fs-m);
+    color: #1E557B;
+    font-weight: 600;
+    min-height: 26px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+  }
+
+  &__languages{
+    list-style: none;
+    display: flex;
+    color: #7695AB;
+    font-weight: 300;
+    margin-top: 8px;
+    li{
+      &:last-child{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;      
+      }
+      &:not(:last-child){
+        &:after{
+          content: ',';
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  &__stargazer{
+    display: none;
+  }
+
+  &__participation{
+    color: #1E557B;
+    margin-top: 24px;
+    font-size: var(--fs-xs);
+    &__percentage{
+      font-size: var(--fs-l);
+      font-weight: 500;
+      margin-right: 5px;
+    }
+  }
+
+  &__countItems{
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
