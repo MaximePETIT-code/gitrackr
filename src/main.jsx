@@ -5,6 +5,7 @@ import Root from "./components/Root/Root";
 import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
+import UserRepositories from "./pages/UserRepositories/UserRepositories";
 import "./index.scss";
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:userId/repositories",
-        element: <h1>All repositories</h1>,
+        element: <UserRepositories/>,
       },
     ],
   }

@@ -1,92 +1,30 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NotFound from "../../components/NotFound/NotFound";
-import Loader from "../../components/Loader/Loader";
 import Profile from "../../components/Profile/Profile";
-import ContributionsLineChart from "../../components/ContributionsLineChart/ContributionsLineChart";
-import { fetchUserRepositories } from "../../utils/fetchUserRepositories";
-import { fetchUserContributions } from "../../utils/fetchUserContributions";
-import { getCacheData, setCacheData } from "../../utils/cache";
 import KeyIndicator from "../../components/KeyIndicator/KeyIndicator";
 import styles from "./UserDashboard.module.scss";
+import ContributionsLineChart from "../../components/ContributionsLineChart/ContributionsLineChart";
 import TopLanguagesDougnut from "../../components/TopLanguagesDoughnut/TopLanguagesDougnut";
+import { useUserData } from "../../utils/useUserData";
+import NotFound from "../../components/NotFound/NotFound";
+import Loader from "../../components/Loader/Loader";
 
 export default function UserDashboard() {
   const { userId } = useParams();
+  const {
+    userData,
+    isError,
+    dataIsLoading,
+    totalRepositories,
+    totalContributions,
+  } = useUserData(userId);
 
-  // State for user data
-  const [userData, setUserData] = useState(getCacheData(userId, "userData"));
-  const [isError, setIsError] = useState(false);
-
-  // State for contributions and repositories of the user
-  const [contributionsIsLoading, setContributionsIsLoading] = useState(
-    !getCacheData(userId, "totalContributions")
-  );
-  const [totalRepositories, setTotalRepositories] = useState(
-    getCacheData(userId, "totalRepositories") || {}
-  );
-  const [totalContributions, setTotalContributions] = useState(
-    getCacheData(userId, "totalContributions") || {}
-  );
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-  
-      // If user data is already available in the cache
-      if (userData) {
-        setUserData(userData);
-        setTotalContributions(getCacheData(userId, "totalContributions") || {});
-        setTotalRepositories(getCacheData(userId, "totalRepositories") || {});
-      } else {
-        try {
-          const response = await fetch(`https://api.github.com/users/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-            },
-          });
-  
-          // Check if the response is successful
-          if (response.ok) {
-            const userData = await response.json();
-            setUserData(userData);
-            setCacheData(userId, "userData", userData);
-  
-            const fetchRepositoriesAndContributions = async () => {
-              const [repositories, contributions] = await Promise.all([
-                fetchUserRepositories(userId),
-                fetchUserContributions(userId),
-              ]);
-  
-              setTotalRepositories(repositories);
-              setCacheData(userId, "totalRepositories", repositories);
-              setTotalContributions(contributions);
-              setCacheData(userId, "totalContributions", contributions);
-              setContributionsIsLoading(false);
-            };
-  
-            fetchRepositoriesAndContributions();
-          } else {
-            setIsError(true);
-          }
-        } catch (error) {
-          console.log("An error occurred while retrieving data: ", error);
-          setIsError(true);
-        }
-      }
-    };
-  
-    fetchData();
-  }, [userId, userData]);
-  
-  
   // Render the NotFound component if there's an error
   if (isError) {
     return <NotFound />;
   }
 
   // Render the Loader component if the user data is still loading
-  if (contributionsIsLoading) {
+  if (dataIsLoading) {
     return <Loader />;
   }
 
@@ -103,7 +41,7 @@ export default function UserDashboard() {
         <KeyIndicator
           totalRepositories={totalRepositories}
           totalContributions={totalContributions}
-          isLoading={contributionsIsLoading}
+          isLoading={dataIsLoading}
         />
       </header>
 
@@ -111,14 +49,14 @@ export default function UserDashboard() {
         <div className={styles.left}>
           <ContributionsLineChart
             totalContributions={totalContributions}
-            isLoading={contributionsIsLoading}
+            isLoading={dataIsLoading}
           />
         </div>
 
         <div className={styles.right}>
           <TopLanguagesDougnut
             totalRepositories={totalRepositories}
-            isLoading={contributionsIsLoading}
+            isLoading={dataIsLoading}
           />
         </div>
       </div>
