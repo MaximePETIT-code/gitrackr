@@ -39,8 +39,6 @@ export function fetchUserRepositories(userId) {
             }
           }
         }
-        
-        
         `,
       }),
     })
@@ -78,14 +76,16 @@ export function fetchUserRepositories(userId) {
                 }
               );
 
-              const contributorsData = await responseContributors.json();
-
               let contributors = [];
-              if (Array.isArray(contributorsData)) {
-                contributors = contributorsData.map((contributor) => ({
-                  name: contributor.login,
-                  commitCount: contributor.contributions,
-                }));
+              if (responseContributors.status === 200) {
+                const contributorsData = await responseContributors.json();
+
+                if (Array.isArray(contributorsData)) {
+                  contributors = contributorsData.map((contributor) => ({
+                    name: contributor.login,
+                    commitCount: contributor.contributions,
+                  }));
+                }
               }
 
               let totalCommitCount = 0;
