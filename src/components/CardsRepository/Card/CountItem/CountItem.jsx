@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./CountItem.module.scss";
 
 export default function CountItem({ icon, name, count }) {
@@ -13,3 +14,9 @@ export default function CountItem({ icon, name, count }) {
     </div>
   );
 }
+
+CountItem.propTypes = {
+  icon: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
+};
