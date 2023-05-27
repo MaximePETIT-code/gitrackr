@@ -19,11 +19,10 @@ export default function CardsRepository({ userId, totalRepositories }) {
       : "100%";
   });
 
-  const linkRepo = `https://github.com/${userId}/${totalRepositories.TopRepositoriesList[0].name}`;
-
   return (
     <div className={styles.container}>
       {totalRepositories.TopRepositoriesList.map((repo, key) => {
+          const linkRepo = `https://github.com/${userId}/${repo.name}`;
         return (
           <Card
             key={key}
