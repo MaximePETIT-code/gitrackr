@@ -44,7 +44,7 @@ export default function Card({
       <div className={styles.card__participation}>
         <PercentageItem
           value={percentageParticipation}
-          desciption={`with ${contributorsCount}`}
+          desciption={`with ${contributorsCount > 0 ? contributorsCount : 1}`}
           desciptionIcon={ContributorIcon}
         />
         <p>

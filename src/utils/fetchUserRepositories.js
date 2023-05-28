@@ -55,7 +55,7 @@ export function fetchUserRepositories(userId) {
                 `https://api.github.com/repos/${userId}/${repoName}`,
                 {
                   headers: {
-                    Authorization: `Bearer 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`,
+                    Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                   },
                 }
@@ -70,7 +70,7 @@ export function fetchUserRepositories(userId) {
                 `https://api.github.com/repos/${userId}/${repoName}/contributors`,
                 {
                   headers: {
-                    Authorization: `Bearer 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`,
+                    Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                   },
                 }
@@ -98,7 +98,7 @@ export function fetchUserRepositories(userId) {
                   {
                     headers: {
                       Authorization:
-                        "Bearer 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",
+                        `Bearer ${token}`,
                       "Content-Type": "application/json",
                     },
                   }
