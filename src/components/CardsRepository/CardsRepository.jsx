@@ -22,6 +22,7 @@ export default function CardsRepository({ userId, totalRepositories }) {
         : `${((userCommits / totalCommits) * 100).toFixed(0)}%`;
 
     repository.percentageParticipation = percentageParticipation;
+    repository.contributorsCount = contributorsCount;
   });
 
   return (
@@ -36,6 +37,7 @@ export default function CardsRepository({ userId, totalRepositories }) {
             languages={repo.languages}
             stargazerCount={repo.stargazerCount}
             percentageParticipation={repo.percentageParticipation}
+            contributorsCount={repo.contributorsCount}
             totalCommitCount={repo.totalCommitCount}
             forkCount={repo.forkCount}
           />

@@ -10,6 +10,7 @@ export default function Card({
   languages,
   stargazerCount,
   percentageParticipation,
+  contributorsCount,
   totalCommitCount,
   forkCount,
 }) {
@@ -33,7 +34,8 @@ export default function Card({
           <span className={styles.card__participation__percentage}>
             {percentageParticipation}
           </span>
-          of contributions
+          of commits for {contributorsCount}
+          {contributorsCount > 1 ? " contributors" : " contributor"}
         </p>
       </div>
 
@@ -60,6 +62,7 @@ Card.propTypes = {
   ).isRequired,
   stargazerCount: PropTypes.number.isRequired,
   percentageParticipation: PropTypes.string.isRequired,
+  contributorsCount : PropTypes.number.isRequired,
   totalCommitCount: PropTypes.number.isRequired,
   forkCount: PropTypes.number.isRequired,
 };
