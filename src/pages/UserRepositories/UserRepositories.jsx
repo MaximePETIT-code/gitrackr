@@ -1,3 +1,5 @@
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { MetaDescriptions } from "../../constants/MetaDescriptions";
 import { useParams } from "react-router-dom";
 import { useUserData } from "../../utils/useUserData";
 import NotFound from "../../components/NotFound/NotFound";
@@ -23,9 +25,18 @@ export default function UserRepositories() {
   }
 
   return (
-    <>
+    <HelmetProvider>
+      <Helmet>
+        <title>
+          {MetaDescriptions.dashboard.title} {userId}
+        </title>
+        <meta
+          name="description"
+          content={`Check out ${userId}'s GitHub stats! You can view the monthly contributions or the top programming languages used`}
+        />
+      </Helmet>
       <header>
-      <Profile
+        <Profile
           name={userData?.login}
           image={userData?.avatar_url}
           created_at={userData?.created_at}
@@ -35,8 +46,11 @@ export default function UserRepositories() {
 
       <div className={styles.charts}>
         <TitleChart>Statistics of top repositories</TitleChart>
-        <CardsRepository userId={userId} totalRepositories={totalRepositories} />
+        <CardsRepository
+          userId={userId}
+          totalRepositories={totalRepositories}
+        />
       </div>
-    </>
+    </HelmetProvider>
   );
 }

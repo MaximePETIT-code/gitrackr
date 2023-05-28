@@ -1,3 +1,5 @@
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { MetaDescriptions } from "../../constants/MetaDescriptions";
 import { useParams } from "react-router-dom";
 import Profile from "../../components/Profile/Profile";
 import KeyIndicator from "../../components/KeyIndicator/KeyIndicator";
@@ -29,7 +31,14 @@ export default function UserDashboard() {
   }
 
   return (
-    <>
+    <HelmetProvider>
+      <Helmet>
+      <title>{MetaDescriptions.dashboard.title} {userId}</title>
+          <meta
+            name="description"
+            content={`Check out ${userId}'s GitHub stats! You can view the monthly contributions or the top programming languages used`}
+          />
+      </Helmet>
       <header className={styles.general}>
         <Profile
           name={userData?.login}
@@ -60,6 +69,6 @@ export default function UserDashboard() {
           />
         </div>
       </div>
-    </>
+    </HelmetProvider>
   );
 }
