@@ -1,0 +1,28 @@
+.percentage {
+  &__container {
+    height: 8px;
+    width: 100px;
+    background-color: #B1D4EC;
+    border-radius: 12px;
+  }
+
+  &__value {
+    height: 8px;
+    background-color: #7BB6E0;
+    border-radius: 12px;
+    width: 100px;
+  }
+
+  &__description{
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-xs);
+    font-weight: 300;
+    color: #7695AB;
+    margin-top: 4px;
+
+    p{
+      margin: 0 4px 0 0;
+    }
+  }
+}

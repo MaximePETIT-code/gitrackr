@@ -61,9 +61,15 @@
   &__participation{
     color: #1E557B;
     margin-top: 24px;
+    align-items: center;
     font-size: var(--fs-xs);
+    display: flex;
+    align-items: flex-start;
+    p{
+      margin: -5px 4px 0 8px;
+    }
     &__percentage{
-      font-size: var(--fs-l);
+      // font-size: var(--fs-s);
       font-weight: 500;
       margin-right: 5px;
     }
