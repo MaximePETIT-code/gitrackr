@@ -4,25 +4,30 @@ import styles from "./CardsRepository.module.scss";
 
 export default function CardsRepository({ userId, totalRepositories }) {
   totalRepositories.TopRepositoriesList.forEach((repository) => {
-    let totalCommits = repository.totalCommitCount;
-    let userCommits = 0;
+    const userCommits = repository.contributors.reduce((count, contributor) => {
+      return (
+        count +
+        (contributor.name.toLowerCase() === userId.toLowerCase()
+          ? contributor.commitCount
+          : 0)
+      );
+    }, 0);
 
-    repository.contributors.forEach((contributor) => {
-      if (contributor.name.toLowerCase() === userId.toLowerCase()) {
-        userCommits = contributor.commitCount;
-      }
-    });
+    const totalCommits = repository.totalCommitCount;
+    const contributorsCount = repository.contributors.length;
 
-    const percentageParticipation = (userCommits / totalCommits) * 100;
-    repository.percentageParticipation = isFinite(percentageParticipation)
-      ? percentageParticipation.toFixed(0) + "%"
-      : "100%";
+    const percentageParticipation =
+      contributorsCount === 0
+        ? "100%"
+        : `${((userCommits / totalCommits) * 100).toFixed(0)}%`;
+
+    repository.percentageParticipation = percentageParticipation;
   });
 
   return (
     <div className={styles.container}>
       {totalRepositories.TopRepositoriesList.map((repo, key) => {
-          const linkRepo = `https://github.com/${userId}/${repo.name}`;
+        const linkRepo = `https://github.com/${userId}/${repo.name}`;
         return (
           <Card
             key={key}
