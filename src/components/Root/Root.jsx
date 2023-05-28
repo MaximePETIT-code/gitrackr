@@ -1,8 +1,11 @@
 import { Outlet, useMatch } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./Root.module.scss";
+import { useScreenSize } from "../../utils/useScreenSize";
+import MobileNav from "../Nav/MobileNav/MobileNav";
 
 export default function Root() {
+  const isMobileScreen = useScreenSize(990);
   const match = useMatch("/:userId");
   const isUserIdPage = match !== null;
 
@@ -12,7 +15,7 @@ export default function Root() {
 
   return (
     <div className={styles.container} style={containerStyle}>
-      <Sidebar />
+      {isMobileScreen ? <MobileNav /> : <Sidebar />}
       <main className={styles.main}>
         <Outlet />
       </main>

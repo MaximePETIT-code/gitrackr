@@ -5,6 +5,9 @@
   @media screen and (max-width: 1220px) {
     height: auto;
   }
+  @media screen and (max-width: 990px) {
+    display: block;
+  }
 }
 
 .main {
@@ -13,7 +16,7 @@
   gap: 48px;
 
   @media screen and (max-width: 990px) {
-    padding: 24px 0 48px 0;
+    padding: 24px 0 90px 0;
     width: 90vw;
     margin: 0 auto;
   }

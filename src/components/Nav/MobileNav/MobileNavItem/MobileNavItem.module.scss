@@ -1,0 +1,23 @@
+.navItem{
+  list-style: none;
+  width: 50%;
+
+  &__container{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 16px;
+    padding: 16px 10px;
+  }
+
+  &__title {
+    color: var(--blue-deep);
+    font-weight: 600;
+  }
+
+  .active{
+    background-color: #C7DEF5;
+  }
+}
