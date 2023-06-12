@@ -1,9 +1,9 @@
-<br />
+![image](https://github-production-user-asset-6210df.s3.amazonaws.com/74910872/245104861-befe4a8f-b74f-43fa-82b9-d9183110f2ac.png)
+
 <div align="center">
    <p align="center">
      Statistics dashboard for GitHub user's
    </p>
-  ![image](https://github.com/MaximePETIT-code/gitrackr/assets/74910872/befe4a8f-b74f-43fa-82b9-d9183110f2ac)
 </div>
 
 ## About The Project
