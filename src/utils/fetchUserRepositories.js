@@ -66,58 +66,11 @@ export function fetchUserRepositories(userId) {
                 return null;
               }
 
-              const responseContributors = await fetch(
-                `https://api.github.com/repos/${userId}/${repoName}/contributors`,
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                  },
-                }
-              );
-
-              let contributors = [];
-              if (responseContributors.status === 200) {
-                const contributorsData = await responseContributors.json();
-
-                if (Array.isArray(contributorsData)) {
-                  contributors = contributorsData.map((contributor) => ({
-                    name: contributor.login,
-                    commitCount: contributor.contributions,
-                  }));
-                }
-              }
-
-              let totalCommitCount = 0;
-              let page = 1;
-              let hasNextPage = true;
-
-              while (hasNextPage) {
-                const responseCommits = await fetch(
-                  `https://api.github.com/repos/${userId}/${repoName}/commits?per_page=100&page=${page}`,
-                  {
-                    headers: {
-                      Authorization:
-                        `Bearer ${token}`,
-                      "Content-Type": "application/json",
-                    },
-                  }
-                );
-
-                const commitsData = await responseCommits.json();
-
-                totalCommitCount += commitsData.length;
-
-                hasNextPage = commitsData.length === 100;
-                page++;
-              }
-
               return {
                 name: repoName,
                 forkCount: repo.forkCount,
                 stargazerCount: repo.stargazerCount,
-                totalCommitCount,
-                contributors,
+                commitCount: repo.defaultBranchRef.target.history.totalCount,
                 languages: repo.languages.edges.map((edge) => ({
                   name: edge.node.name,
                   size: edge.size,
