@@ -40,7 +40,7 @@ export default function SearchUser() {
   const fetchUserData = async () => {
     // Envoyer la requête à l'API GitHub
     const response = await fetch(
-      `https://api.github.com/search/users?q=${searchValue}`,
+      `https://api.github.com/search/users?q=${searchValue}+type:user`,
       {
         headers: {
           Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
