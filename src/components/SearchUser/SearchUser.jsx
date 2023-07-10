@@ -17,7 +17,7 @@ export default function SearchUser() {
       if (searchValue.trim() !== "") {
         fetchUserData();
       } else {
-        setSearchResults([]); // Réinitialiser les résultats de recherche lorsque l'input est vide
+        setSearchResults([]);
       }
     }, 300);
 
@@ -50,7 +50,7 @@ export default function SearchUser() {
 
     if (response.ok) {
       const data = await response.json();
-      const users = data.items.slice(0, 3); // Obtenir les 3 premiers résultats
+      const users = data.items.slice(0, 3);
 
       setSearchResults(users);
     }
