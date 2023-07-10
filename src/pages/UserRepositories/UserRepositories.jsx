@@ -6,12 +6,11 @@ import NotFound from "../../components/NotFound/NotFound";
 import Loader from "../../components/Loader/Loader";
 import CardsRepository from "../../components/CardsRepository/CardsRepository";
 import styles from "./UserRepositories.module.scss";
-import Profile from "../../components/Profile/Profile";
 import TitleChart from "../../components/TitleChart/TitleChart";
 
 export default function UserRepositories() {
   const { userId } = useParams();
-  const { isError, userData, dataIsLoading, totalRepositories } =
+  const { isError, dataIsLoading, totalRepositories } =
     useUserData(userId);
 
   // Render the NotFound component if there's an error
@@ -35,14 +34,6 @@ export default function UserRepositories() {
           content={`Check out ${userId}'s GitHub stats! You can view the monthly contributions or the top programming languages used`}
         />
       </Helmet>
-      <header>
-        <Profile
-          name={userData?.login}
-          image={userData?.avatar_url}
-          created_at={userData?.created_at}
-          url={userData?.html_url}
-        />
-      </header>
 
       <div className={styles.charts}>
         <TitleChart>Statistics of top repositories</TitleChart>

@@ -13,7 +13,7 @@ import Loader from "../../components/Loader/Loader";
 export default function UserDashboard() {
   const { userId } = useParams();
   const {
-    userData,
+    // userData,
     isError,
     dataIsLoading,
     totalRepositories,
@@ -33,26 +33,20 @@ export default function UserDashboard() {
   return (
     <HelmetProvider>
       <Helmet>
-      <title>{MetaDescriptions.dashboard.title} {userId}</title>
-          <meta
-            name="description"
-            content={`Check out ${userId}'s GitHub stats! You can view the monthly contributions or the top programming languages used`}
-          />
+        <title>
+          {MetaDescriptions.dashboard.title} {userId}
+        </title>
+        <meta
+          name="description"
+          content={`Check out ${userId}'s GitHub stats! You can view the monthly contributions or the top programming languages used`}
+        />
       </Helmet>
-      <header className={styles.general}>
-        <Profile
-          name={userData?.login}
-          image={userData?.avatar_url}
-          created_at={userData?.created_at}
-          url={userData?.html_url}
-        />
 
-        <KeyIndicator
-          totalRepositories={totalRepositories}
-          totalContributions={totalContributions}
-          isLoading={dataIsLoading}
-        />
-      </header>
+      <KeyIndicator
+        totalRepositories={totalRepositories}
+        totalContributions={totalContributions}
+        isLoading={dataIsLoading}
+      />
 
       <div className={styles.charts}>
         <div className={styles.left}>
