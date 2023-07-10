@@ -1,10 +1,27 @@
-.KeyIndicator{
+.KeyIndicator {
   width: 24vw;
   display: flex;
-  // flex-direction: column;
   gap: 12px;
+  position: absolute;
+  top: 48px;
+  right: 48px;
 
-  @media screen and (max-width: 1220px) {
+  @media screen and (max-width: 990px) {
+    position: absolute !important;
+    top: 0;
+    right: 32px;
+    width: 400px;
+  }
+
+  @media screen and (max-width: 722px) {
+    position: static !important;
+    margin-top: 48px;
+    width: auto;
+  }
+
+  @media screen and (max-width: 722px),
+  screen and (max-width: 1200px) {
+    position: static;
     margin-top: 48px;
     width: auto;
   }

@@ -2,7 +2,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import PropTypes from "prop-types";
 import TitleChart from "../TitleChart/TitleChart";
-import styles from "./TopLanguagesDougnut.module.scss"
+import styles from "./TopLanguagesDougnut.module.scss";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -105,15 +105,14 @@ export default function TopLanguagesDoughnut({ totalRepositories, isLoading }) {
     ActionScript: "#9C392D",
     Arduino: "#A665BF",
   };
-  
 
   // Generate background colors and border colors based on language
-const backgroundColors = labels.map(
-  (label) => `${languageColors[label] || "rgba(0, 0, 0, 0.2)"}90`
-);
-const borderColors = labels.map(
-  (label) => languageColors[label] || "rgba(0, 0, 0, 1)"
-);
+  const backgroundColors = labels.map(
+    (label) => `${languageColors[label] || "rgba(0, 0, 0, 0.2)"}90`
+  );
+  const borderColors = labels.map(
+    (label) => languageColors[label] || "rgba(0, 0, 0, 1)"
+  );
 
   // Prepare the chart data
   const data = {
@@ -131,12 +130,14 @@ const borderColors = labels.map(
 
   const options = {
     responsive: true,
-  }
+  };
 
-  return(
+  return (
     <section className={styles.dougnutChart}>
       <TitleChart>Top 5 languages utilization</TitleChart>
-      <Doughnut data={data} options={options} />
+      <div className={styles.dougnutChart__container}>
+        <Doughnut data={data} options={options} />
+      </div>
     </section>
   );
 }
