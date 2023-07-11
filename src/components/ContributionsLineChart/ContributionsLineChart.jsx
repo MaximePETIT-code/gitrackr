@@ -60,16 +60,6 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
         pointHoverRadius: 8,
         tension: 0.4,
       },
-      // {
-      //   label: "New repositories",
-      //   data: repositoriesData,
-      //   fill: false,
-      //   borderColor: "rgb(192, 75, 75)",
-      //   pointStyle: "circle",
-      //   pointRadius: 4,
-      //   pointHoverRadius: 8,
-      //   tension: 0.4,
-      // },
     ],
   };
 
@@ -81,20 +71,16 @@ export default function ContributionsLineChart({ totalContributions, isLoading }
         grid: {
           display: true,
         },
-        // ticks: {
-        //   stepSize: 20,
-        // },
       },
       x: {
         grid: {
-          display: true,
+          display: false,
         },
       },
     },
     plugins: {
       legend: {
         display: true,
-        // position: "bottom",
       },
     },
   };
