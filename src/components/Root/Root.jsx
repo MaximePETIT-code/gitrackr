@@ -20,7 +20,7 @@ export default function Root() {
   
   return (
     <div className={styles.container} style={containerStyle}>
-      {isMobileScreen ? <MobileNav /> : <Sidebar userData={userData} />}
+      {isMobileScreen ? <MobileNav /> : userData && <Sidebar userData={userData} />}
       <main className={styles.main}>
         <header>
           {userData && (
