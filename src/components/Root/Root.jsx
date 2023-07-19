@@ -17,10 +17,10 @@ export default function Root() {
 
   const { userId } = useParams();
   const { userData } = useUserData(userId);
-
+  
   return (
     <div className={styles.container} style={containerStyle}>
-      {isMobileScreen ? <MobileNav /> : <Sidebar />}
+      {isMobileScreen ? <MobileNav /> : <Sidebar userData={userData} />}
       <main className={styles.main}>
         <header>
           {userData && (
