@@ -66,6 +66,11 @@ export function fetchUserRepositories(userId) {
                 return null;
               }
 
+              if (repo.defaultBranchRef === null) {
+                // No default branch reference, exclude the repo from the list
+                return null;
+              }
+
               return {
                 name: repoName,
                 forkCount: repo.forkCount,
@@ -77,7 +82,7 @@ export function fetchUserRepositories(userId) {
                 })),
               };
             })
-          );
+          ).then((repos) => repos.filter((repo) => repo !== null));
 
           resolve({
             totalRepositoriesCount: repositories.totalCount,
