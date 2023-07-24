@@ -44,7 +44,7 @@ export default function KeyIndicator({
         />
 
         <Card
-          title={"Total contributions this mounth"}
+          title={"Total contributions this month"}
           value={lastValue}
           percentage={percentageChange}
         />
