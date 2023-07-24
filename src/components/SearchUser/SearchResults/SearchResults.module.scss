@@ -53,5 +53,14 @@
       text-decoration: none;
       color: #1E557B;
     }
+
+    &__nameS {
+      font-size: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 137px;
+      height: 19px;
+    }
   }
 }

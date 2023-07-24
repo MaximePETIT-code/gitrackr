@@ -9,9 +9,12 @@
 
   &__container{
     width: 222px;
-    height: 100%;
+    height: calc(100vh - 96px);
     margin: 0 24px;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__search{
