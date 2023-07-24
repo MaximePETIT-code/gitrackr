@@ -17,10 +17,6 @@ export default function Recommandations({ followers }) {
     ];
   }
 
-  const handleClick = () => {
-    setShowModal(!showModal);
-  };
-
   return (
     <div className={styles.recommandations}>
       {!showModal && (
@@ -36,7 +32,11 @@ export default function Recommandations({ followers }) {
 
       {showModal && <SearchUser count={2} size={"s"} type={"secondary"} />}
       <div className={styles.recommandations__button}>
-        <Button action={handleClick} marginTop="24px" type={showModal ? "rounded" : "primary"}>
+        <Button
+          action={() => setShowModal(!showModal)}
+          marginTop="24px"
+          type={showModal ? "rounded" : "primary"}
+        >
           {showModal ? "X" : "Search other user"}
         </Button>
       </div>
