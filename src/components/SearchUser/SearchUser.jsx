@@ -4,7 +4,11 @@ import SearchResults from "./SearchResults/SearchResults";
 import styles from "./SearchUser.module.scss";
 import enterIcon from "./enter.svg";
 
-export default function SearchUser({count = 3, size="m", type="primary"}) {
+export default function SearchUser({
+  count = 3,
+  size = "m",
+  type = "primary",
+}) {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const inputRef = useRef(null);
@@ -65,10 +69,17 @@ export default function SearchUser({count = 3, size="m", type="primary"}) {
           value={searchValue}
           onChange={handleSearchChange}
           placeholder="Search GitHub user"
-          style={{ fontSize: size === 's' ? '14px' : '16px', backgroundColor: type === 'secondary' ? '#f7fbfd' : '#D2E6F4' }}
+          style={{
+            fontSize: size === "s" ? "14px" : "16px",
+            backgroundColor: type === "secondary" ? "#f7fbfd" : "#D2E6F4",
+          }}
           className={styles.searchBar__input}
         />
-        <button type="submit" className={styles.searchBar__button}>
+        <button
+          type="submit"
+          className={styles.searchBar__button}
+          style={{ bottom: size === "s" ? "7px" : "8px" }}
+        >
           <img src={enterIcon} alt="enter icon" />
         </button>
       </form>
@@ -83,7 +94,6 @@ export default function SearchUser({count = 3, size="m", type="primary"}) {
     </>
   );
 }
-
 
 SearchUser.propTypes = {
   count: PropTypes.number,
