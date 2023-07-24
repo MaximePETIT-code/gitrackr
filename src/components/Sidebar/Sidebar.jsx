@@ -2,10 +2,8 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
 import Logo from "../Logo/Logo";
-import SearchUser from "../SearchUser/SearchUser";
-import SearchResults from "../SearchUser/SearchResults/SearchResults";
 import styles from "./Sidebar.module.scss";
-
+import Recommandations from "./Recommandations/Recommandations";
 export default function Sidebar({ userData }) {
   const [followers, setFollowers] = useState([]);
   useEffect(() => {
@@ -37,18 +35,13 @@ export default function Sidebar({ userData }) {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebar__container}>
-        <Logo />
-        {userData && <Nav />}
-        <div className={styles.sideBar__recommmandation}>
-          <h3>Recommendations</h3>
-          <SearchResults
-            users={followers}
-            key={followers.map((user) => user.id).join("-")}
-          />
+        <div className={styles.sidebar__top}>
+          <Logo />
+          {userData && <Nav />}
         </div>
-        {/* <div className={styles.sidebar__search}>
-          <SearchUser />
-        </div> */}
+        <div className={styles.sidebar__bottom}>
+          <Recommandations followers={followers} />
+        </div>
       </div>
     </aside>
   );

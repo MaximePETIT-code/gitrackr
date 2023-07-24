@@ -1,0 +1,21 @@
+.recommandations{
+  background-color: var(--blue-light);
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 270px;
+  position: relative;
+
+  &__title{
+    color: var(--blue-deep);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  &__button{
+    position: absolute;
+    bottom: 16px;
+    width: 86%;
+    display: flex;
+    justify-content: center;
+  }
+}
