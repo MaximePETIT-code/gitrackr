@@ -16,8 +16,8 @@ export default function KeyIndicator({
   const years = Object.keys(contributionsByMonth);
   const lastYear = years[years.length - 1];
   const months = Object.keys(contributionsByMonth[lastYear]);
-  const lastMonth = months[months.length - 2];
-  const previousMonth = months[months.length - 3];
+  const lastMonth = months[months.length - 3];
+  const previousMonth = months[months.length - 4];
 
   const lastValue = contributionsByMonth[lastYear][lastMonth];
   const previousValue = contributionsByMonth[lastYear][previousMonth];
@@ -44,7 +44,7 @@ export default function KeyIndicator({
         />
 
         <Card
-          title={"Total contributions this month"}
+          title={"Total contributions the last month"}
           value={lastValue}
           percentage={percentageChange}
         />
