@@ -11,6 +11,7 @@ export default function NavItem({ title, path, icon }) {
             ? `${styles.navItem__container} ${styles.active}`
             : styles.navItem__container
         }
+        end
         to={`.${path}`}
       >
         <img src={icon} alt={title} />
