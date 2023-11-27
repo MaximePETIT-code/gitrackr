@@ -6,25 +6,26 @@ import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
 import UserDashboard from "./pages/UserDashboard/UserDashboard";
 import UserRepositories from "./pages/UserRepositories/UserRepositories";
+import { Analytics } from '@vercel/analytics/react';
 import "./index.scss";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
-    errorElement: <Error/>,
+    element: <Home />,
+    errorElement: <Error />,
   },
   {
     path: "/:userId",
-    element: <Root/>,
+    element: <Root />,
     children: [
       {
         path: "/:userId",
-        element: <UserDashboard/>,
+        element: <UserDashboard />,
       },
       {
         path: "/:userId/repositories",
-        element: <UserRepositories/>,
+        element: <UserRepositories />,
       },
     ],
   }
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Analytics />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
