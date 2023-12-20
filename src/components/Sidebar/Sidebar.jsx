@@ -36,7 +36,7 @@ export default function Sidebar({ userData }) {
     <aside className={styles.sidebar}>
       <div className={styles.sidebar__container}>
         <div className={styles.sidebar__top}>
-          <Logo />
+          <Logo size={"small"} />
           {userData && <Nav />}
         </div>
         <div className={styles.sidebar__bottom}>
