@@ -1,4 +1,5 @@
-![image](https://github.com/MaximePETIT-code/gitrackr/assets/74910872/30f6208e-1477-44ac-b061-a2c9bb62fd93)
+https://github.com/MaximePETIT-code/gitrackr/assets/74910872/bac71ec8-f0bf-4814-b3f5-b6bfa34a4150
+
 
 
 <div align="center">
