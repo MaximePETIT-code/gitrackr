@@ -136,7 +136,7 @@ export default function TopLanguagesDoughnut({ totalRepositories, isLoading }) {
     <section className={styles.dougnutChart}>
       <TitleChart>Top 5 languages utilization</TitleChart>
       <div className={styles.dougnutChart__container}>
-        <Doughnut data={data} options={options} />
+        <Doughnut style={{ minWidth: '350px', minHeight: '350px' }} data={data} options={options} />
       </div>
     </section>
   );
