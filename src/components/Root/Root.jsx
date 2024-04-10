@@ -6,6 +6,8 @@ import MobileNav from "../Nav/MobileNav/MobileNav";
 import Profile from "../Profile/Profile";
 import { useUserData } from "../../utils/useUserData";
 
+const SUPER_USERS = ["MaximePETIT-code", "samuelaudic"]
+
 export default function Root() {
   const isMobileScreen = useScreenSize(990);
   const match = useMatch("/:userId");
@@ -17,7 +19,7 @@ export default function Root() {
 
   const { userId } = useParams();
   const { userData } = useUserData(userId);
-  
+
   return (
     <div className={styles.container} style={containerStyle}>
       {isMobileScreen ? <MobileNav /> : userData && <Sidebar userData={userData} />}
@@ -29,6 +31,7 @@ export default function Root() {
               image={userData.avatar_url}
               created_at={userData.created_at}
               url={userData.html_url}
+              super_user={Boolean(SUPER_USERS.includes(userId))}
             />
           )}
         </header>
